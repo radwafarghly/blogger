@@ -23,9 +23,33 @@
                             </div>
                         </div>
                     </div>
+                    <div id="backend-comments" style="margin-top: 50px;">
+                        <h3>Comments <small>{{ $post->comments()->count() }} total</small></h3>
+
+                        <table class="table">
+                            <thead>
+                            <tr>
+                                <th>Comment</th>
+                                <th width="70px"></th>
+                            </tr>
+                            </thead>
+
+                            <tbody>
+                            @foreach ($post->comments as $comment)
+                                <tr>
+                                    <td>{{ $comment->content }}</td>
+                                    <td>
+                                    </td>
+                                </tr>
+                            @endforeach
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
 
 
                 </div>
+
             </div>
         </div>
     </div>

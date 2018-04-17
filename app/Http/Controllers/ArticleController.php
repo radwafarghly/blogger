@@ -76,7 +76,9 @@ class ArticleController extends Controller
      */
     public function show($id)
     {
+
         $article = $this->article->getById($id);
+        $comments=\App\Comment::select(['content'])->with('commentable')->get();
 
         return view('articles.show', compact('article'));
 

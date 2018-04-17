@@ -10,6 +10,7 @@ namespace App\Repositories;
 
 
 use App\Article;
+use App\Comment;
 
 class ArticlesRepository
 {
@@ -17,14 +18,17 @@ class ArticlesRepository
      * @var $model
      */
     private $model;
+    private $comment;
     /**
      * EloquentTask constructor.
      *
      * @param App\Post $model
      */
-    public function __construct(Article $model)
+    public function __construct(Article $model , Comment $comment)
     {
         $this->model = $model;
+        $this->comment = $comment;
+
     }
     /**
      * Get all tasks.

@@ -42,6 +42,7 @@ class  PostRepository {
     public function getById($id)
     {
         return $this->model->find($id);
+
     }
     /**
      * Create a new task.

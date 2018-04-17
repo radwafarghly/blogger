@@ -32,7 +32,7 @@ Route::delete('/posts/{id}/delete',['as'=>'posts.destroy','uses'=>'PostControlle
 
 
 
-
+//articles
 
 Route::get('/articles',['as'=>'articles.index','uses'=>'ArticleController@index']);
 
@@ -47,3 +47,10 @@ Route::get('/articles/{id}/edit',['as'=>'articles.edit','uses'=>'ArticleControll
 Route::patch('/articles/{id}',['as'=>'articles.update','uses'=>'ArticleController@update']);
 
 Route::delete('/articles/{id}/delete',['as'=>'articles.destroy','uses'=>'ArticleController@destroy']);
+
+//comment
+
+
+Route::get('/comments/create/{id}',['as'=>'comments.create','uses'=>'CommentController@create' ]);
+
+Route::post('/comments/create/{id}',['as'=>'comments.store','uses'=>'CommentController@store']);

@@ -24,6 +24,8 @@
                                     {!! Form::open(['method' => 'DELETE','route' => ['posts.destroy', $post->id],'style'=>'display:inline']) !!}
                                     {!! Form::submit('Delete', ['class' => 'btn btn-danger']) !!}
                                     {!! Form::close() !!}
+                                    <a class="btn btn-primary" href="{{ route('comments.create',$post->id) }}">Add Comment</a>
+
                                 </td>
                             </tr>
                         @endforeach
