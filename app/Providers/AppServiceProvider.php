@@ -3,6 +3,7 @@
 namespace App\Providers;
 
 use App\Repositories\ArticlesRepository;
+use App\Repositories\ModelRelationRepository;
 use App\Repositories\PostRepository;
 use App\Repositories\RepositoryInterface;
 use Illuminate\Support\ServiceProvider;
@@ -31,6 +32,8 @@ class AppServiceProvider extends ServiceProvider
     {
         $this->app->singleton(PostRepository::class);
         $this->app->singleton(ArticlesRepository ::class);
+        $this->app->singleton(ModelRelationRepository ::class);
+
 
 
     }

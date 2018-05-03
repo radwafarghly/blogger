@@ -1,12 +1,13 @@
 <?php
 
 namespace App;
+use App\Http\Controllers\RelationshipsTrait;
 
 use Illuminate\Database\Eloquent\Model;
 
 class Comment extends Model
 {
-
+use RelationshipsTrait;
     protected $fillable = ['content', 'commentable_id', 'commentable_type','user_id'];
 
     public function user()

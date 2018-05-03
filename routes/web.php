@@ -15,6 +15,12 @@ Route::get('/', 'HomeController@index')->name('home');
 
 Auth::routes();
 
+Route::get('/poststrash',['as'=>'posts.trashpost','uses'=>'PostController@trash']);
+
+Route::get('/trashrestore/{id}',['as'=>'posts.trashrestore','uses'=>'PostController@restore']);
+
+Route::get('/trashdelete/{id}',['as'=>'posts.trashdelete','uses'=>'PostController@forceDelete']);
+
 Route::get('/posts',['as'=>'posts.index','uses'=>'PostController@index']);
 
 Route::get('/posts/create',['as'=>'posts.create','uses'=>'PostController@create' ]);
@@ -54,3 +60,11 @@ Route::delete('/articles/{id}/delete',['as'=>'articles.destroy','uses'=>'Article
 Route::get('/comments/create/{id}',['as'=>'comments.create','uses'=>'CommentController@create' ]);
 
 Route::post('/comments/create/{id}',['as'=>'comments.store','uses'=>'CommentController@store']);
+
+
+
+
+//getnotifcationuser
+
+
+Route::get('/getnotifcationuser',['as'=>'getnotifcationuser','uses'=>'PostController@getrelation']);

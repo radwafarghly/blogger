@@ -17,6 +17,12 @@ class ArticleController extends Controller
     /**
      * @var $task
      */
+//
+//    public function __construct()
+//    {
+//        $this->middleware('auth');
+//    }
+
     private $article;
     /**
      * TaskController constructor.
@@ -25,6 +31,8 @@ class ArticleController extends Controller
      */
     public function __construct(ArticlesRepository $article)
     {
+        $this->middleware('auth');
+
         $this->article = $article;
     }
 

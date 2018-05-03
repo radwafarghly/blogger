@@ -3,8 +3,13 @@
 namespace App\Http\Controllers;
 
 use App\Comment;
+use App\Notifications\AddComment;
 use App\Post;
+use App\Repositories\ModelRelationRepository;
+use App\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
+use Notification ;
 
 class CommentController extends Controller
 {
@@ -15,6 +20,14 @@ class CommentController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+    private $modelRelationRepository;
+
+
+    public function __construct(ModelRelationRepository $modelRelationRepository)
+    {
+        $this->middleware('auth');
+        $this->modelRelationRepository=$modelRelationRepository;
+    }
     public function index()
     {
 
@@ -28,8 +41,8 @@ class CommentController extends Controller
     public function create($id)
     {
         $post = Post::find($id);
-        $comments=Comment::select(['content'])->with('commentable')->get();
-        return view('comments.create',compact('post','comments'));
+       // $comments=Comment::select(['content'])->with('commentable')->get();
+        return view('comments.create',compact('post'));
     }
 
     /**
@@ -40,12 +53,19 @@ class CommentController extends Controller
      */
     public function store($id,Request $request)
     {
+
         $comment = new Comment([
             'content' => $request->content,
             'user_id'=> auth()->id()
         ]);
          $post = Post::find($id);
-         $post->comments()->save($comment);
+        $comment=$post->comments()->save($comment);
+        if($comment){
+            $users=$this->modelRelationRepository->getnotifcationuser($comment);
+           //$users=User::all();
+            Notification::send($users, new AddComment($comment));
+
+        }
 
         return redirect()->route('posts.show', ['id' => $id]);
     }
