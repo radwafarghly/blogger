@@ -21,14 +21,27 @@ Route::get('/aboutus',['uses'=>'AboutusController@index']);
 
 Route::get('about/{id}',['uses'=>'AboutusController@show']);
 
-Route::post('/addabout',['uses'=>'AboutusController@store']);
+Route::post('/addabout',[
+    'uses'=>'AboutusController@store',
+    'middleware' =>'auth.jwt'
+]);
 
 Route::post('/updateabout/{id}',['uses'=>'AboutusController@update']);
 
-Route::delete('/deleteabout/{id}',['uses'=>'AboutusController@destroy']);
+Route::delete('/deleteabout/{id}',[
+    'uses'=>'AboutusController@destroy',
+    'middleware' =>'auth.jwt'
+]);
 
-Route::patch('about/{id}',['uses'=>'AboutusController@edit']);
+Route::patch('about/{id}',[
+    'uses'=>'AboutusController@edit',
+    'middleware' =>'auth.jwt'
+]);
 
+Route::post('/singUp',[
+    'uses'=>'UserController@signUp'
+]);
 
-
-
+Route::post('/singIn',[
+    'uses'=>'UserController@signIn'
+]);

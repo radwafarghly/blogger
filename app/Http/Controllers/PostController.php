@@ -86,6 +86,7 @@ class PostController extends Controller
             'title' => 'required',
             'body' => 'required',
         ],[],$rule);
+
         $attributes = $request->all();
         $current_userid = \Auth::user()->id;
         $attributes['user_id'] = $current_userid;

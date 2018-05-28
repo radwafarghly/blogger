@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Aboutus;
 use Illuminate\Http\Request;
+use JWTAuth;
 use Validator;
 
 class AboutusController extends Controller
@@ -49,6 +50,10 @@ class AboutusController extends Controller
      */
     public function store(Request $request)
     {
+//        if(! $user =JWTAuth::parseToken()->authenticate()){
+//            return response()->json(['message'=>"User Not Found"],401);
+//        }
+        $user=JWTAuth::parseToken()->toUser();
         $credentials = $request->only('details');
         $rules = [
             'details'=>'required',
@@ -67,13 +72,13 @@ class AboutusController extends Controller
         }
 
         //insert into aboutus table
-        $user=new Aboutus([
+        $aboutUs=new Aboutus([
             "details"=>$request->input('details'),
         ]);
 
 
-        $user->save();
-        return response()->json(['message'=>"Add About us successfully"],201);
+        $aboutUs->save();
+        return response()->json(['message'=>"Add About us successfully",'user'=>$user],201);
     }
 
 
