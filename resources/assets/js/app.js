@@ -19,4 +19,12 @@ Vue.component('notifications', require('./components/notifications.vue'));
 
 const app = new Vue({
     el: '#app'
-});
+ });
+
+//  var userId = '{!! \Auth::id() !!}';
+//  console.log("user id :", userId);
+//
+// Echo.private('App.User.'+ userId)
+//     .notification((notification) => {
+//     console.log(notification);
+// });

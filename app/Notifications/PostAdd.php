@@ -8,9 +8,10 @@ use Illuminate\Notifications\Notification;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Notifications\Messages\MailMessage;
 use Illuminate\Notifications\Messages\BroadcastMessage;
+use Illuminate\Contracts\Broadcasting\ShouldBroadcast;
+use Illuminate\Contracts\Broadcasting\ShouldBroadcastNow;
 
-
-class PostAdd extends Notification
+class PostAdd extends Notification implements ShouldBroadcast ,ShouldQueue ,ShouldBroadcastNow
 {
     use Queueable;
 
@@ -19,7 +20,7 @@ class PostAdd extends Notification
      *
      * @return void
      */
-    protected  $post;
+    public  $post;
     public function __construct(Post $post)
     {
           $this->post =$post;
@@ -33,43 +34,23 @@ class PostAdd extends Notification
      */
     public function via($notifiable)
     {
-        return ['database','broadcast'];
+        return ['broadcast','database'];
     }
-
-    /**
-     * Get the mail representation of the notification.
-     *
-     * @param  mixed  $notifiable
-     * @return \Illuminate\Notifications\Messages\MailMessage
-//     */
-//    public function toMail($notifiable)
-//    {
-//        return (new MailMessage)
-//                    ->line('The introduction to the notification.')
-//                    ->action('Notification Action', url('/'))
-//                    ->line('Thank you for using our application!');
-//    }
-
-
-    /**
-     * Get the array representation of the notification.
-     *
-     * @param  mixed  $notifiable
-     * @return array
-     */
-    public function toArray($notifiable)
-    {
-        return [
-            'data' =>"New Post Add with title :: " . $this->post->title ." <br> Added By " . auth()->user()->name
-
-        ];
-    }
-
 
     public function toBroadcast($notifiable)
     {
         return new BroadcastMessage([
-            'data' =>"New Post Add with title :: " . $this->post->title ." <br> Added By " . auth()->user()->name
+            'post' => "New Post Add with title::" . $this->post->title,
+            'user' => "Added By " . auth()->user()->name
         ]);
+    }
+
+    public function toDatabase($notifiable)
+    {
+        return [
+            //'data' =>"New Post Add with title :: " . $this->post->title ." <br> Added By " . auth()->user()->name
+            'post' => "New Post Add with title::" . $this->post->title,
+            'user' => "Added By " . auth()->user()->name
+        ];
     }
 }

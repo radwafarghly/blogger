@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "content-hash": "8160a8381caf3dc02f6185befb40cf72",
+    "content-hash": "344937e73b96cc404bbd2d9c1c800fe5",
     "packages": [
         {
             "name": "dnoegel/php-xdg-base-dir",
@@ -1306,16 +1306,16 @@
         },
         {
             "name": "pusher/pusher-php-server",
-            "version": "v3.0.3",
+            "version": "v3.0.4",
             "source": {
                 "type": "git",
                 "url": "https://github.com/pusher/pusher-http-php.git",
-                "reference": "e4f6980fa69699945873f0895de8c5a14e7244e7"
+                "reference": "1496ef5ae12670ff8ffe83b9f47d1e4514608d9b"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/pusher/pusher-http-php/zipball/e4f6980fa69699945873f0895de8c5a14e7244e7",
-                "reference": "e4f6980fa69699945873f0895de8c5a14e7244e7",
+                "url": "https://api.github.com/repos/pusher/pusher-http-php/zipball/1496ef5ae12670ff8ffe83b9f47d1e4514608d9b",
+                "reference": "1496ef5ae12670ff8ffe83b9f47d1e4514608d9b",
                 "shasum": ""
             },
             "require": {
@@ -1355,7 +1355,7 @@
                 "rest",
                 "trigger"
             ],
-            "time": "2018-04-26T09:54:45+00:00"
+            "time": "2018-05-21T13:25:35+00:00"
         },
         {
             "name": "ramsey/uuid",

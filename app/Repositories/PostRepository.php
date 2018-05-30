@@ -65,8 +65,8 @@ class  PostRepository {
        // return $this->model->create($attributes );
         $post = $this->model->create($attributes);
         if ($post) {
-           // $users = User::all();
-             $users=$this->modelRelationRepository->getnotifcationuser($post);
+            $users = User::all();
+            // $users=$this->modelRelationRepository->getnotifcationuser($post);
             Notification::send($users,new PostAdd($post));
         }
 //        $users=$this->modelRelationRepository->getnotifcationuser($post);

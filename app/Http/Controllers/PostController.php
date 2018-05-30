@@ -98,8 +98,8 @@ class PostController extends Controller
 //        ];
 //        dd($attributes);
          $this->post->create($attributes);
-         session()->flash('success','Post created successfully');
-        return redirect()->route('posts.index');//->with('success','Post created successfully');
+//         session()->flash('success','Post created successfully');
+        return redirect()->route('posts.index')->with('success','Post created successfully');
     }
 
     /**

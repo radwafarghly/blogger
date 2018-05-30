@@ -13,6 +13,12 @@
 
     <!-- Styles -->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
+
+    <!--script-->
+    <script src="https://js.pusher.com/4.1/pusher.min.js"></script>
+
+
+
 </head>
 <body>
     <div id="app">
@@ -59,7 +65,7 @@
                                          @foreach(auth()->user()->notifications as $notes)
                                                  <li>
                                                          <a href="">
-                                                             {!! $notes ->data['data'] !!}
+                                                             {!! $notes ->data['post']!!}
                                                          </a>
                                                  </li>
                                          @endforeach
@@ -95,5 +101,7 @@
 
     <!-- Scripts -->
     <script src="{{ asset('js/app.js') }}"></script>
+
+
 </body>
 </html>
