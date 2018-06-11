@@ -14,6 +14,10 @@ Route::get('/', 'HomeController@index')->name('home');
 
 
 Auth::routes();
+//chat 
+Route::get('chat', 'ChatsController@index');
+Route::get('messages', 'ChatsController@fetchMessages');
+Route::post('messages', 'ChatsController@sendMessage');
 
 Route::get('/poststrash',['as'=>'posts.trashpost','uses'=>'PostController@trash']);
 
@@ -68,3 +72,14 @@ Route::post('/comments/create/{id}',['as'=>'comments.store','uses'=>'CommentCont
 
 
 Route::get('/getnotifcationuser',['as'=>'getnotifcationuser','uses'=>'PostController@getrelation']);
+
+
+// messanger chat
+
+Route::group(['prefix' => 'messageschat'], function () {
+    Route::get('/', ['as' => 'messages', 'uses' => 'MessagesController@index']);
+    Route::get('create', ['as' => 'messages.create', 'uses' => 'MessagesController@create']);
+    Route::post('/', ['as' => 'messages.store', 'uses' => 'MessagesController@store']);
+    Route::get('{id}', ['as' => 'messages.show', 'uses' => 'MessagesController@show']);
+    Route::put('{id}', ['as' => 'messages.update', 'uses' => 'MessagesController@update']);
+});

@@ -4,12 +4,16 @@ namespace App;
 
 use App\Http\Controllers\RelationshipsTrait;
 use Illuminate\Notifications\Notifiable;
+use Cmgmyr\Messenger\Traits\Messagable;
+
 use Illuminate\Foundation\Auth\User as Authenticatable;
 
 class User extends Authenticatable
 {
     use Notifiable;
     use RelationshipsTrait;
+    use Messagable;
+
 
     /**
      * The attributes that are mass assignable.
@@ -43,6 +47,14 @@ class User extends Authenticatable
     {
         return $this->hasMany(Comment::class);
     }
-
+    /**
+     * A user can have many messages
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     */
+    public function messages()
+    {
+    return $this->hasMany(Message::class);
+    }
 
 }
